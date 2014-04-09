@@ -22,11 +22,16 @@ public class Level1 extends JFrame implements Runnable, KeyListener
     private Bueno principal;
     private Malo fantasma;
     private int direccion=0;
+    private int vidas;
+    private int score;
+    private boolean pausa;
     
     
     public Level1()
     {
                 direccion = 0;
+                vidas=3;
+                score=0;
                 Image principal0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/Bueno0.gif"));
 		
 		
@@ -55,9 +60,11 @@ public class Level1 extends JFrame implements Runnable, KeyListener
      * 
      */
 	public void run () {
-		while (true) {
+		while (true){
+                    if(!pausa){
 			actualiza();
-			//checaColision();
+			checaColision();
+                    }
 			repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
                         // Se actualiza el <code>Applet</code> repintando el contenido.
 			try	{
@@ -76,6 +83,7 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	 */
 	public void actualiza(){
             
+            if(!pausa){
             long tiempoTranscurrido= System.currentTimeMillis() - tiempoActual;
             tiempoActual += tiempoTranscurrido;
             animBueno.actualiza(tiempoTranscurrido);
@@ -99,6 +107,32 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 		 
             }
         }
+       }
+       
+        /**
+	 * Metodo usado para checar las colisiones del objeto planeta y meteorito
+	 * con las orillas del <code>Applet</code>.
+	 */
+	public void checaColision() {
+		
+                if (principal.getPosX() + principal.getAncho() > getWidth()) {
+                     principal.setPosX(getWidth()-principal.getAncho());
+                }
+                 
+                if (principal.getPosX() < 0) {
+			principal.setPosX(0);
+		}
+                
+		if (principal.getPosY() + principal.getAlto() > getHeight()) {
+			principal.setPosY(getHeight()-principal.getAlto());
+		}
+                
+                if (principal.getPosY() < 0) {
+                     principal.setPosY(0);  
+                }
+                 
+		 
+         }
 		
 	/**
 	 * Metodo <I>paint</I> sobrescrito de la clase <code>JFrame</code>,
@@ -134,13 +168,20 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	 */
 	public void paint1(Graphics g){
             
+            
             if(principal != null){
                 g.drawImage(principal.getAnimacion().getImagen(), principal.getPosX(),principal.getPosY(), this);
+                g.drawString("Vidas: " + vidas, 50, 50);
+                g.drawString("Score: " + score, 50, 70);
             }
             else {
 
                  //Da un mensaje mientras se carga el dibujo
                  g.drawString("No se cargo la imagen..",20,20);
+            }
+            if(pausa){
+                
+                g.drawString("PAUSA", 450, 250);
             }
          }
         
@@ -165,6 +206,10 @@ public class Level1 extends JFrame implements Runnable, KeyListener
             }
             else if (e.getKeyCode() == KeyEvent.VK_DOWN){    // presiono tecla S hacia abajo
                 direccion = 4;
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_P){
+                
+                pausa=!pausa;
             }
         
     }
