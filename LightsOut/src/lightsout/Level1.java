@@ -17,11 +17,34 @@ public class Level1 extends JFrame implements Runnable, KeyListener
     // Se declaran las variables.
     private Graphics dbg;	// Objeto grafico
     private Image dbImage;	// Imagen a proyectar
+    private SoundClip fondo;
+    private long tiempoActual;
+    private long tiempoInicial;
+    private Animacion animBueno;
+    private Animacion animMalo;
+    private Bueno principal;
+    private Malo fantasma;
+    private int direccion=0;
     
     
     public Level1()
     {
-        
+                direccion = 0;
+                Image principal0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/Bueno0.gif"));
+		
+		
+		//Se crea la animación
+		animBueno = new Animacion();
+		animBueno.sumaCuadro(principal0, 100);
+                
+                //Pinta el fondo del Applet de color blanco		
+		setBackground(Color.white);
+                setSize(1000,800);
+                addKeyListener(this);
+                Thread th = new Thread (this);
+		// Empieza el hilo
+		th.start ();
+		
     }
     
     /** 
@@ -34,8 +57,11 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	public void run () {
 		while (true) {
 			actualiza();
+
+			//checaColision();
+
 			//checaColision(); 
-			repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
+                        // Se actualiza el <code>Applet</code> repintando el contenido.
 			try	{
 				// El thread se duerme.
 				Thread.sleep (20);
@@ -52,7 +78,9 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	 */
 	public void actualiza(){
             
-            
+            long tiempoTranscurrido= System.currentTimeMillis() - tiempoActual;
+            tiempoActual += tiempoTranscurrido;
+            animBueno.actualiza(tiempoTranscurrido);
 		 
         }
 		
@@ -89,8 +117,15 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	 * @param g es el <code>objeto grafico</code> usado para dibujar.
 	 */
 	public void paint1(Graphics g){
-                    
-                    
+            
+            if(principal != null){
+                g.drawImage(principal.getAnimacion().getImagen(), principal.getPosX(),principal.getPosY(), this);
+            }
+            else {
+
+                 //Da un mensaje mientras se carga el dibujo
+                 g.drawString("No se cargo la imagen..",20,20);
+            }
          }
         
         /**
@@ -132,4 +167,3 @@ public class Level1 extends JFrame implements Runnable, KeyListener
         
     }
 }
-	
