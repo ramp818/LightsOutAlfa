@@ -37,6 +37,9 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 		animBueno = new Animacion();
 		animBueno.sumaCuadro(principal0, 100);
                 
+                // se carg personaje
+                principal= new Bueno(400,500,animBueno);
+                
                 //Pinta el fondo del Applet de color blanco		
 		setBackground(Color.white);
                 setSize(1000,800);
@@ -57,16 +60,9 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	public void run () {
 		while (true) {
 			actualiza();
-<<<<<<< HEAD
 			//checaColision();
 			repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
-=======
-
-			//checaColision();
-
-			//checaColision(); 
                         // Se actualiza el <code>Applet</code> repintando el contenido.
->>>>>>> FETCH_HEAD
 			try	{
 				// El thread se duerme.
 				Thread.sleep (20);
@@ -86,7 +82,25 @@ public class Level1 extends JFrame implements Runnable, KeyListener
             long tiempoTranscurrido= System.currentTimeMillis() - tiempoActual;
             tiempoActual += tiempoTranscurrido;
             animBueno.actualiza(tiempoTranscurrido);
+            switch(direccion){
+                    case 1: {
+                        principal.setPosX(principal.getPosX() + 2);
+                        break;
+                    }
+                    case 2: {
+                        principal.setPosX(principal.getPosX() - 2);
+                        break;
+                    }
+                    case 3: {
+                        principal.setPosY(principal.getPosY() - 2);
+                        break;
+                    }
+                    case 4: {
+                        principal.setPosY(principal.getPosY() + 2);
+                        break;
+                    }
 		 
+            }
         }
 		
 	/**
@@ -143,7 +157,18 @@ public class Level1 extends JFrame implements Runnable, KeyListener
      */
     public void keyPressed(KeyEvent e) {
         
-            
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {    //Presiono flecha derecha
+                direccion = 1;
+            } 
+            else if (e.getKeyCode() == KeyEvent.VK_LEFT) {    //Presiono tecla A izquierda
+                direccion = 2;
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_UP){    // presion tecla W hacia arriba
+                direccion = 3;
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_DOWN){    // presiono tecla S hacia abajo
+                direccion = 4;
+            }
         
     }
 
@@ -169,6 +194,6 @@ public class Level1 extends JFrame implements Runnable, KeyListener
      * @param e es el <code>evento</code> que se genera en al soltar las teclas.
      */
     public void keyReleased(KeyEvent e) {
-        
+        direccion=0;
     }
 }
