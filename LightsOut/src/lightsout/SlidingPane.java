@@ -13,6 +13,7 @@ import java.text.NumberFormat;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -20,7 +21,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
 
 public class SlidingPane {
-
+public static boolean start=false;
     private SlidePane slidePane = new SlidePane();
 
     public SlidingPane() {
@@ -32,21 +33,23 @@ public class SlidingPane {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 }
 
-                JButton slideButton = new JButton("Options");
+                JButton slideButton = new JButton("Instrucciones");
                 JButton slideButtonS = new JButton("Start");
                 JButton slideButtonH = new JButton("Highscores");
                 
                 slideButtonS.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        slidePane.slide();
+                        start=true;
+                        
+                        
                     }
                 });
                 
                 slideButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        slidePane.slide();
+                         JOptionPane.showMessageDialog(null, "Utiliza las flechas del teclado para mover a Bob alrededor de la mansion y prender las luces de cada cuarto ");
                     }
                 });
                 
@@ -98,7 +101,7 @@ public class SlidingPane {
             setBorder(new LineBorder(Color.BLACK));
             setLocation(-getPreferredSize().width, 0);
             setLayout(new GridBagLayout());
-            JLabel label = new JLabel("Options");
+            JLabel label = new JLabel("HighScore TOP 10:");
             label.setForeground(Color.WHITE);
             add(label);
             
@@ -157,4 +160,6 @@ public class SlidingPane {
 
         }
     }
+    
+    
 }
