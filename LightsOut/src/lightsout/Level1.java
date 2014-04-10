@@ -17,7 +17,10 @@ public class Level1 extends JFrame implements Runnable, KeyListener
     private SoundClip fondo;
     private long tiempoActual;
     private long tiempoInicial;
-    private Animacion animBueno;
+    private Animacion animBuenoF;
+    private Animacion animBuenoA;
+    private Animacion animBuenoD;
+    private Animacion animBuenoI;
     private Animacion animMalo;
     private Bueno principal;
     private Malo fantasma;
@@ -32,19 +35,49 @@ public class Level1 extends JFrame implements Runnable, KeyListener
                 direccion = 0;
                 vidas=3;
                 score=0;
-                Image principal0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/Bueno0.gif"));
+                Image frente0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/frente0.png"));
+		Image frente1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/frente1.png"));
+                Image frente2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/frente2.png"));
+                Image atras0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/atras0.png"));
+                Image atras1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/atras1.png"));
+                Image atras2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/atras2.png"));
+                Image derecha0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/derecha0.png"));
+                Image derecha1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/derecha1.png"));
+                Image derecha2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/derecha2.png"));
+                Image izquierda0 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/izquierda0.png"));
+                Image izquierda1 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/izquierda1.png"));
+                Image izquierda2 = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/izquierda2.png"));
 		
-		
-		//Se crea la animación
-		animBueno = new Animacion();
-		animBueno.sumaCuadro(principal0, 100);
+		//Se crea la animación Frente
+		animBuenoF = new Animacion();
+		animBuenoF.sumaCuadro(frente0, 100);
+                animBuenoF.sumaCuadro(frente1, 100);
+                animBuenoF.sumaCuadro(frente2, 100);
+                
+                //Se crea la animación Atras
+		animBuenoA = new Animacion();
+		animBuenoA.sumaCuadro(atras0, 100);
+                animBuenoA.sumaCuadro(atras1, 100);
+                animBuenoA.sumaCuadro(atras2, 100);
+                
+                //Se crea la animación Derecha
+		animBuenoD = new Animacion();
+		animBuenoD.sumaCuadro(derecha0, 100);
+                animBuenoD.sumaCuadro(derecha1, 100);
+                animBuenoD.sumaCuadro(derecha2, 100);
+                
+                //Se crea la animación Izquierda
+		animBuenoI = new Animacion();
+		animBuenoI.sumaCuadro(izquierda0, 100);
+                animBuenoI.sumaCuadro(izquierda1, 100);
+                animBuenoI.sumaCuadro(izquierda2, 100);
                 
                 // se carg personaje
-                principal= new Bueno(400,500,animBueno);
+                principal= new Bueno(400,500,animBuenoA);
                 
                 //Pinta el fondo del Applet de color blanco		
 		setBackground(Color.white);
-                setSize(1000,800);
+                setSize(1200,800);
                 addKeyListener(this);
                 Thread th = new Thread (this);
 		// Empieza el hilo
@@ -86,22 +119,31 @@ public class Level1 extends JFrame implements Runnable, KeyListener
             if(!pausa){
             long tiempoTranscurrido= System.currentTimeMillis() - tiempoActual;
             tiempoActual += tiempoTranscurrido;
-            animBueno.actualiza(tiempoTranscurrido);
+            
+            
             switch(direccion){
                     case 1: {
+                        principal= new Bueno(principal.getPosX(),principal.getPosY(),animBuenoD);
                         principal.setPosX(principal.getPosX() + 2);
+                        animBuenoD.actualiza(tiempoTranscurrido);
                         break;
                     }
                     case 2: {
+                        principal= new Bueno(principal.getPosX(),principal.getPosY(),animBuenoI);
                         principal.setPosX(principal.getPosX() - 2);
+                        animBuenoI.actualiza(tiempoTranscurrido);
                         break;
                     }
                     case 3: {
+                        principal= new Bueno(principal.getPosX(),principal.getPosY(),animBuenoA);
                         principal.setPosY(principal.getPosY() - 2);
+                        animBuenoA.actualiza(tiempoTranscurrido);
                         break;
                     }
                     case 4: {
+                        principal= new Bueno(principal.getPosX(),principal.getPosY(),animBuenoF);
                         principal.setPosY(principal.getPosY() + 2);
+                        animBuenoF.actualiza(tiempoTranscurrido);
                         break;
                     }
 		 
