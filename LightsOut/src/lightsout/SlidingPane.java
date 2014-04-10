@@ -33,7 +33,24 @@ public class SlidingPane {
                 }
 
                 JButton slideButton = new JButton("Options");
+                JButton slideButtonS = new JButton("Start");
+                JButton slideButtonH = new JButton("Highscores");
+                
+                slideButtonS.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        slidePane.slide();
+                    }
+                });
+                
                 slideButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        slidePane.slide();
+                    }
+                });
+                
+                slideButtonH.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         slidePane.slide();
@@ -53,6 +70,8 @@ public class SlidingPane {
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.gridwidth = GridBagConstraints.REMAINDER;
                 frame.add(new JLabel("Lights Out"), gbc);
+                frame.add(slideButtonS, gbc);
+                frame.add(slideButtonH, gbc);
                 frame.add(slideButton, gbc);
                 frame.setSize(1000, 800);
                 frame.setLocationRelativeTo(null);
