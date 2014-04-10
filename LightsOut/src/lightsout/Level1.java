@@ -97,7 +97,9 @@ public class Level1 extends JFrame implements Runnable, KeyListener
                     if(!pausa){
 			actualiza();
 
+
 			//checaColision();
+
 			repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
 
 

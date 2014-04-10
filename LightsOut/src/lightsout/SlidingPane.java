@@ -40,6 +40,8 @@ public class SlidingPane {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         slidePane.slide();
+                                Level1 nivel1 = new Level1();
+                            	nivel1.setVisible(true);
                     }
                 });
                 

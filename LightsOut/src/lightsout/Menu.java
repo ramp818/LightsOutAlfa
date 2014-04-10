@@ -16,6 +16,7 @@ import javax.swing.JLabel;
  *
  * @author alexgarza
  */
+
 public class Menu extends JFrame {
 
     private static final long serialVersionUID=1L;
