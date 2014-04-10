@@ -22,7 +22,6 @@ import javax.swing.border.LineBorder;
 public class SlidingPane {
 
     private SlidePane slidePane = new SlidePane();
-    public String stringMenu = "Options";
 
     public SlidingPane() {
         EventQueue.invokeLater(new Runnable() {
@@ -48,7 +47,6 @@ public class SlidingPane {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         slidePane.slide();
-                    stringMenu = "Options";
                     }
                 });
                 
@@ -56,7 +54,6 @@ public class SlidingPane {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         slidePane.slide();
-                        stringMenu = "HighScore";
                     }
                 });
 
@@ -101,7 +98,7 @@ public class SlidingPane {
             setBorder(new LineBorder(Color.BLACK));
             setLocation(-getPreferredSize().width, 0);
             setLayout(new GridBagLayout());
-            JLabel label = new JLabel(stringMenu);
+            JLabel label = new JLabel("Options");
             label.setForeground(Color.WHITE);
             add(label);
             
