@@ -40,15 +40,15 @@ public static boolean start=false;
                 slideButtonS.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-                        start=true;
+
+                   start=true;
                         
                         
-=======
-                        slidePane.slide();
+
+                        
                                 Level1 nivel1 = new Level1();
                             	nivel1.setVisible(true);
->>>>>>> FETCH_HEAD
+
                     }
                 });
                 
