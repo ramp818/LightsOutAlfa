@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package lightsout;
+
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,17 +11,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 
+<<<<<<< HEAD
 /**
  *
  * @author alexgarza
  */
 public class Menu extends JFrame {
+=======
+public class Menu extends JFrame{
+>>>>>>> FETCH_HEAD
     private static final long serialVersionUID=1L;
     
     
     public Menu(){
-    super("MENU");
-    setSize(600,400);
+        super("MENU");
+        setSize(1000,800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel p= new JPanel(new GridBagLayout());
         JPanel j= new JPanel();
@@ -53,7 +53,5 @@ public class Menu extends JFrame {
         
          
          
-} 
-   
-    
+    }
 }
