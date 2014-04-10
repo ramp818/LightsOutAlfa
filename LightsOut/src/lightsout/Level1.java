@@ -57,16 +57,16 @@ public class Level1 extends JFrame implements Runnable, KeyListener
 	public void run () {
 		while (true) {
 			actualiza();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			//checaColision();
 			repaint();    // Se actualiza el <code>Applet</code> repintando el contenido.
-=======
+//=======
 
 			//checaColision();
 
 			//checaColision(); 
                         // Se actualiza el <code>Applet</code> repintando el contenido.
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 			try	{
 				// El thread se duerme.
 				Thread.sleep (20);
