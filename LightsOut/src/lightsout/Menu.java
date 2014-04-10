@@ -11,15 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 
-<<<<<<< HEAD
 /**
  *
  * @author alexgarza
  */
-public class Menu extends JFrame {
-=======
 public class Menu extends JFrame{
->>>>>>> FETCH_HEAD
     private static final long serialVersionUID=1L;
     
     
