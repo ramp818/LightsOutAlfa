@@ -13,15 +13,24 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
+<<<<<<< HEAD
 //<<<<<<< HEAD
+=======
+
+>>>>>>> FETCH_HEAD
 /**
  *
  * @author alexgarza
  */
+
 public class Menu extends JFrame {
+<<<<<<< HEAD
 //=======
 
 //>>>>>>> FETCH_HEAD
+=======
+
+>>>>>>> FETCH_HEAD
     private static final long serialVersionUID=1L;
     
     
@@ -67,3 +76,4 @@ public class Menu extends JFrame {
          
     }
 }
+
